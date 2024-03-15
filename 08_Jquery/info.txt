@@ -1,0 +1,4 @@
+Jquery is a library use to make javascript more easy to work with
+because it make code easy to write than javascript and less bulky but the issue with this library is 
+it is very imerative it means each function depend on another and on another so pyramid of doom happens
+so for its solution react is introduced which makes javascript even more easy and fun and it is declarative.
