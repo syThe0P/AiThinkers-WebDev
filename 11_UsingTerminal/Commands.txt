@@ -1,0 +1,18 @@
+Commands ->
+
+1. pwd -> Tells you in which directory you are
+2. ls -> tells all the list items in the current directory
+3. cd desktop -> This will shift to you inside a directory like you will move to desktop with this Commands
+4. cd .. -> by this you will move one directory up 
+5. clear -> clear the terminal
+6. cd / -> goes to the root director of the computer
+7. cd ~ -> to the user directory
+8. cd Desktop/test -> we are inside a folder name test inside desktop
+9. open . -> open the folder you are currently in
+10. mkdir webapp -> make the new folder inside the current directory
+11. touch index.html -> make the new file in current directory
+12. open -a "Sublime Text" -> open any application
+13. mv index.html about.html -> replace the file
+14. rm about.html -> remove the file
+15. rm -r webapp -> to remove the folder/directory
+16. say this is soooo cool
