@@ -1,0 +1,26 @@
+Json is basically javascript object notation
+Because of this similarity, a JavaScript program can easily convert JSON data into native JavaScript objects.
+
+example->
+{
+"employees":[
+    {"firstName":"John", "lastName":"Doe"},
+    {"firstName":"Anna", "lastName":"Smith"},
+    {"firstName":"Peter", "lastName":"Jones"}
+]
+}
+
+JSON Syntax Rules
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+
+
+we can convert json to onject by
+
+obj.parse(json);
+
+and object to json
+
+json.stringify(obj);
