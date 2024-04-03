@@ -1,0 +1,10 @@
+Ajax is just a method that allows web pages to be updated asynchronously data with a webserver behind the scenes.
+this means that it is possible to update parts of a web page, without reloading the whole page.
+
+now we use fetch method for that ->
+fetch(url)
+  .then(response => response.json())
+  .catch(err => console.log(err))
+
+
+earlier it was jquery we use for that
