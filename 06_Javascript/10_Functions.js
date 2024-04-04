@@ -157,3 +157,7 @@ chai();
 ((name)=>{
     console.log(`db connected with ${name}`);
 })(`pranav`);
+
+
+
+//In normal function generally a function not executes until we call them but in case of iife it will automatically excute when they are defined
