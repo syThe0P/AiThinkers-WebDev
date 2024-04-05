@@ -1,0 +1,15 @@
+/* .signout{
+    display: flex;
+    justify-content: end;
+} */
+.navbar{
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    padding: 1.5rem;
+    text-decoration: underline;
+}
+
+.navbar:hover{
+    color: dimgray;
+}
