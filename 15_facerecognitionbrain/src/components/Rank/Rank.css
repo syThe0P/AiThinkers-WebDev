@@ -1,0 +1,12 @@
+.rank-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rank-title {
+  font-size: 1.1rem;
+}
+
+.rank{
+    font-size: 1.5rem;
+}
