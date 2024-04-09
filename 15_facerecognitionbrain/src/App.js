@@ -5,31 +5,49 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import { useState } from "react";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
-import Clarifai from 'clarifai';
-
+import Clarifai from "clarifai";
 
 const app = new Clarifai.App({
-  apiKey: 'c27f842a12104b1e91ff1f71e1ef85d7'
- });
+  apiKey: "c27f842a12104b1e91ff1f71e1ef85d7",
+});
 
 function App() {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [box, setBox] = useState({});
 
   const onInputChange = (event) => {
-    console.log(event.target.value);
+    setInput(event.target.value);
   };
+
+  const calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById("inputimage");
+    const width = Number(image.width);
+    const height = Number(image.height);
+
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
+    };
+  };
+
+  const displayFace = (box) => {
+    console.log(box);
+    setBox(box);
+  };
+
   const onButtonSubmit = () => {
     console.log("clicked");
-    app.models.predict(Clarifai.COLOR_MODEL, "https://samples.clarifai.com/face-det.jpg").then(
-      function (response) {
-        console.log(response);
-      },
-      function (err) {
-        //error
-      }
-    );
+    setImageUrl(input);
+    app.models
+      .predict(Clarifai.FACE_DETECT_MODEL, imageUrl)
+      .then((response) => displayFace(calculateFaceLocation(response)))
+      .catch((err) => console.log(err));
   };
+
   return (
     <div className="App">
       <Navigation />
@@ -39,7 +57,7 @@ function App() {
         onInputChange={onInputChange}
         onButtonSubmit={onButtonSubmit}
       />
-      <FaceRecognition />
+      <FaceRecognition box={box} imageUrl={imageUrl} />
     </div>
   );
 }
