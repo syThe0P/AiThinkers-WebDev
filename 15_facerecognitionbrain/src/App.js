@@ -13,6 +13,40 @@ const app = new Clarifai.App({
   apiKey: "c27f842a12104b1e91ff1f71e1ef85d7",
 });
 
+const setupClarifaiJSONRequestOptions = (imageUrl) => {
+  const PAT = "b9e4d04394a34261a73c02fae72104b1";
+  const USER_ID = "b7drl7jowy5g";
+  const APP_ID = "test";
+  const MODEL_ID = "face-detection";
+  const MODEL_VERSION_ID = "6dc7e46bc9124c5c8824be4822abe105";
+  const IMAGE_URL = imageUrl;
+
+  const raw = JSON.stringify({
+    user_app_id: {
+      user_id: USER_ID,
+      app_id: APP_ID,
+    },
+    inputs: [
+      {
+        data: {
+          image: {
+            url: IMAGE_URL,
+          },
+        },
+      },
+    ],
+  });
+
+  return {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Key " + PAT, // Add a space after "Key"
+    },
+    body: raw,
+  };
+};
+
 function App() {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -46,11 +80,15 @@ function App() {
   const onButtonSubmit = () => {
     console.log("clicked");
     setImageUrl(input);
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, imageUrl)
+    fetch(
+      "https://api.clarifai.com/v2/models/" + "face-detection" + "/outputs",
+      setupClarifaiJSONRequestOptions(imageUrl)
+    )
+      .then((response) => response.json())
       .then((response) => displayFace(calculateFaceLocation(response)))
       .catch((err) => console.log(err));
   };
+
   const onRouteChange = (route) => {
     setRoute(route);
   };
