@@ -1,7 +1,7 @@
 // Define a higher-order function asyncHandler
 const asyncHandler = (requestHandler) => {
   // Return a middleware function that takes req, res, and next parameters
-  (req, res, next) => {
+  return (req, res, next) => {
     // Resolve the requestHandler function, which is assumed to be asynchronous and returns a Promise
     Promise.resolve(requestHandler(req, res, next))
       // If the promise resolves successfully, continue to the next middleware or route handler

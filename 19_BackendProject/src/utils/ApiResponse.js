@@ -9,3 +9,6 @@ class ApiResponse {
         this.success = statusCode < 400; // Boolean flag indicating the success of the response
     }
 }
+
+
+export {ApiResponse}

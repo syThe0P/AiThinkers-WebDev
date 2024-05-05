@@ -1,6 +1,6 @@
-// Import necessary modules
-import dotenv from "dotenv"
-import connectDB from "./db/index.js"
+import dotenv from "dotenv";
+import { app } from "./app.js"; // Import the app instance from app.js
+import connectDB from "./db/index.js";
 
 // Load environment variables from .env file
 dotenv.config({
@@ -12,7 +12,7 @@ connectDB()
 .then(()=>{
     // If the database connection is successful, start the server
     app.listen(process.env.PORT || 8000, ()=>{
-        console.log("Server is listening!!!");
+        console.log(`Server is listening!!! : ${process.env.PORT}`);
     })
 })
 .catch((err)=>{
