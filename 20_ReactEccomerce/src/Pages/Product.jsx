@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import Breadcrum from '../components/Breadcrums/Breadcrum';
+import { useParams } from 'react-router-dom';
+import { ShopContext } from "../Context/ShopContext";
 
 const Product = () => {
-  return (
-    <div>Product</div>
-  )
-}
+  const { allProducts } = useContext(ShopContext);
+  const  productId  = useParams();
 
-export default Product
+  // Log productId to check its value
+  console.log("productId:", productId);
+
+  // Check if allProducts is null or undefined
+  if (!allProducts) {
+    return <div>Loading...</div>;
+  }
+
+  // Find the product by productId
+  const product = allProducts.find((e) => e.id === Number(productId));
+
+  // Log the found product
+  console.log("product:", product);
+
+  // If product is not found, display an error message
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
+  // If product is found, render the product details
+  return (
+    <div>
+      <Breadcrum category={product.category} name={product.name} />
+    </div>
+  );
+};
+
+export default Product;
