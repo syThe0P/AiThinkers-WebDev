@@ -84,6 +84,7 @@
 }
 
 .cartitems-promobox{
+    display: flex;
     width: 504px;
     margin-top: 15px;
     padding-left: 20px;

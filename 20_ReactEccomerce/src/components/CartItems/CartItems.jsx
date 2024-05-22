@@ -25,7 +25,7 @@ const CartItems = () => {
                 <img
                   src={e.image}
                   alt="img"
-                  className="carticon-product-icon"
+                  className="cartitems-product-icon"
                 />
                 <p>{e.name}</p>
                 <p>${e.new_price}</p>
