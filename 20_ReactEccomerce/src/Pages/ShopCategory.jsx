@@ -25,7 +25,7 @@ const ShopCategory = (props) => {
           .map(item => (
             <Item
               key={item.id}
-              i={item.id}
+              id={item.id}
               name={item.name}
               image={item.image}
               new_price={item.new_price}

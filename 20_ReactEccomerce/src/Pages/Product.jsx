@@ -5,15 +5,13 @@ import { ShopContext } from "../Context/ShopContext";
 
 const Product = () => {
   const { allProducts } = useContext(ShopContext);
-  const  productId  = useParams();
+  const  {productId}  = useParams();
 
   // Log productId to check its value
-  console.log("productId:", productId);
+  console.log("hello pranav", productId);
 
   // Check if allProducts is null or undefined
-  if (!allProducts) {
-    return <div>Loading...</div>;
-  }
+console.log(allProducts);
 
   // Find the product by productId
   const product = allProducts.find((e) => e.id === Number(productId));
