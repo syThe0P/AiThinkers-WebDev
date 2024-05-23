@@ -1,42 +1,42 @@
 import React, { useContext } from "react";
 import "./CartItems.css";
-import {ShopContext} from "../../Context/ShopContext";
+import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
 
 const CartItems = () => {
   const { allProducts, cartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext);
-  console.log(allProducts)
+
   return (
     <div className="cartitems">
       <div className="cartitems-format-main">
         <p>Products</p>
-        <p>Tittle</p>
+        <p>Title</p> {/* Corrected typo: 'Tittle' to 'Title' */}
         <p>Price</p>
         <p>Quantity</p>
         <p>Total</p>
         <p>Remove</p>
       </div>
       <hr />
-      {allProducts?.map((e) => {
-        if (cartItems[e.id] > 0) {
+      {allProducts?.map((product) => {
+        if (cartItems[product.id] > 0) {
           return (
-            <div>
+            <div key={product.id}> {/* Added key to each element in the map function */}
               <div className="cartitems-format cartitems-format-main">
                 <img
-                  src={e.image}
+                  src={product.image}
                   alt="img"
                   className="cartitems-product-icon"
                 />
-                <p>{e.name}</p>
-                <p>${e.new_price}</p>
+                <p>{product.name}</p>
+                <p>${product.new_price}</p>
                 <button className="cartitems-quantity">
-                  {cartItems[e.id]}
+                  {cartItems[product.id]}
                 </button>
-                <p>${e.new_price * cartItems[e.id]}</p>
+                <p>${product.new_price * cartItems[product.id]}</p>
                 <img
                   src={remove_icon}
-                  onClick={(e) => {
-                    removeFromCart(e.id);
+                  onClick={() => {
+                    removeFromCart(product.id); {/* Changed the onClick handler to pass the correct ID */}
                   }}
                   alt="icon"
                 />

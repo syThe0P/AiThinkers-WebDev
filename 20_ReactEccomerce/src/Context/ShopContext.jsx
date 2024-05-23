@@ -26,11 +26,12 @@ const ShopContextProvider = (props) => {
     setCartItems((prev) => {
       const updatedCart = { ...prev };
       if (updatedCart[itemId] > 0) {
-        updatedCart[itemId] - 1;
+        updatedCart[itemId] -= 1; // Corrected to update the value
       }
       return updatedCart;
     });
   };
+  
   const getTotalCartAmount = () =>{
     let totalAmount = 0;
     for(const item in cartItems){
@@ -42,15 +43,16 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   }
 
-  const getTotalCartItems =()=>{
+  const getTotalCartItems = () => {
     let totalItem = 0;
-    for(const item in cartItems){
-      if(cartItems[item] > 0){
-        totalItem += CartItems[item]
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItem += cartItems[item];
       }
     }
     return totalItem;
-  }
+  };
+  
 
   // Log cartItems whenever it changes
   useEffect(() => {
